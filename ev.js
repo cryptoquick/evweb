@@ -15,33 +15,21 @@ var shipGraphics = [
 function graphicsLoaded () {
 	numGraphicsLoaded++;
 	if (numGraphicsLoaded == shipGraphics.length) {
-		loadingGraphics = false;
+		Init();
 	}
 }
 
 window.addEventListener('load', function () {
 	for (i = 0; i < shipGraphics.length; i++) {
 		shipGraphics[i][0].src = shipGraphics[i][1];
-		shipGraphics[i][0].onLoad = graphicsLoaded;
-	}
-	
-	while (loadingGraphics) {
-		graphicsLoaded ();
-		var canvas = document.getElementById('starbridge');
-		canvas.setAttribute('style', 'background: none');
-		Init();
-	}
-	
-	shipSheet.src = 'graphics/starbridge-alpha.png';
-	shipSheet.onload = function () {
-		glowSheet.src = 'graphics/starbridge-glow-alpha.png';
-		glowSheet.onload = function () {
-			
-		}
+		shipGraphics[i][0].onLoad = graphicsLoaded();
 	}
 }, false);
 
 function Init () {
+	var canvas = document.getElementById('starbridge');
+	canvas.setAttribute('style', 'background: none');
+	
 	// Load sprite sheets.
 	
 	window.addEventListener("keydown", Key, false);
@@ -58,8 +46,9 @@ function Init () {
 
 var smoothturn;
 var smoothGo;
+var shipMoving = false;
 var keyPressed = 0;
-var keyPressed2 = 0;
+var slowDown = false;
 
 function Key (evt) {
 	var currentKey = 0;
@@ -71,6 +60,7 @@ function Key (evt) {
 		else {
 			charCode = evt.keyCode;
 		}
+		
 		// Left arrow key
 		if (charCode == 39) {
 			// setInterval animates (read, repeats) the function at a certain speed.
@@ -98,59 +88,80 @@ function Key (evt) {
 			}
 			keyPressed = 37;
 		}
+		
 		// Up arrow key
 		if (charCode == 38) {
 			smoothGo = window.setInterval("updateShip('speedUp')", 100);
+			shipMoving = true;
 		}
 		// Down arrow key
 		if (charCode == 40) {
 			// This will eventually be where I'll put the 'reverse direction' code.
-		//	smoothGo = window.setInterval("updateShip('slowDown')", 100);
 		}
 	}
 	
 	if (evt.type == "keyup") {
 		window.clearInterval(smoothturn);
 		window.clearInterval(smoothGo);
+
 		keyPressed = 0;
+		/*
+		if (shipMoving === false) {
+			slowDown = window.setInterval("updateShip('slowDown')", 200);
+		} else {
+			window.clearInterval(slowDown);
+		}*/
 	}
 }
 
-glowFlicker = 0;
+/* Ship Navigation */
+
+var glowFlicker = false;
 
 // Updates the ship's appearance according to its direction and speed
 function updateShip (change) {
 	frame = {x: shipSystem[0][3], y: shipSystem[0][4]};
 	alpha = shipSystem[0][5];
 	
+	// Turning
 	if (change == 'turnRight') {
 		// Turn the ship using the stored graphical framestep
 		frame = rotateShip('right', frame);
 		recordShip (frame, false);
-	} else if (change == 'turnLeft') {
+	}
+	else if (change == 'turnLeft') {
 		frame = rotateShip('left', frame);
 		recordShip (frame, false);
-	} else if (change == 'speedUp') {
+	}
+	
+	// Engine glow ("speed")
+	else if (change == 'speedUp') {
 		if (alpha < 7) {
 			alpha++;
 			recordShip(false, alpha);
 		}
-		
-		if (alpha == 7) {
-			
-		}
-	} else if (change == 'slowDown') {
+	}
+	else if (change == 'slowDown') {
 		if (alpha > 0) {
 			alpha--;
 			recordShip(false, alpha);
+		} else if (alpha === 0) {
+			shipMoving = false;
 		}
+	}
+	
+	// Makes the engines flicker when at top speed
+	if (alpha == 7 && glowFlicker) {
+		alpha = 8;
+		glowFlicker = false;
+	} else if (alpha > 0) {
+		alpha--;
+		glowFlicker = true;
 	}
 	
 	DrawSprite(glowSheet, frame.x, frame.y, 72, 0, alpha, true);
 	DrawSprite(shipSheet, frame.x, frame.y, 48, 12, 10, false);
 }
-
-
 
 // Update ship's stored variables
 function recordShip (frame, alpha) {
@@ -163,7 +174,7 @@ function recordShip (frame, alpha) {
 	}
 }
 
-/* Ship Navigation */
+/* Canvas Graphics Functions */
 
 // Translates across the 6x6 ship sprite sheet in either direction
 // When it gets to the side of the sheet, go to the next row or column
@@ -192,8 +203,6 @@ function rotateShip (direction, frame) {
 	return {x: frame.x, y: frame.y};
 }
 
-/* Canvas Graphics Functions */
-
 // Global variables to keep track of ship orientation.
 
 var context;
@@ -217,7 +226,7 @@ function DrawSprite (sheet, xstep, ystep, size, offset, alpha, clear) {
 	context.globalCompositeOperation = 'lighter';
 	// Uses the sprite sheet to draw on the board:
 	context.drawImage(sheet,
-	// Which sprite to show on the sheet (determined),
+	// Which sprite to show on the sheet (determined by sprite size),
 	xstep * size, ystep * size,
 	// Sprite size (shows more sprites per sprite window),
 	size, size,
