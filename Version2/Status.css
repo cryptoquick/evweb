@@ -1,0 +1,82 @@
+body {
+   background-color: darkgray;
+}
+div.Status div {
+   /* cursor: move; */
+   color: white;
+   position: relative;
+   font-family: Arial, Sans-Serif;
+   border-top: 2px solid #888;
+   border-bottom: 2px solid #CCC;
+   border-left: 2px solid #888;
+   border-right: 2px solid #CCC;
+   padding: 0px;
+   margin: 0px;
+   height: 1.5em;
+   overflow: hidden;
+
+}
+div.Status {
+   position: absolute;
+   background-color: black;
+   top: 20px;
+   right: 20px;
+   width: 200px;
+   border-top: 2px solid #CCC;
+   border-bottom: 2px solid #888;
+   border-left: 2px solid #CCC;
+   border-right: 2px solid #888;
+   padding: 0px;
+   margin: 0px;
+   z-index: 7;
+}
+div.Status div div.Bar, div.Status div div.Pct {
+   border: 0;
+   position: absolute;
+}
+div.Status div div.Bar {
+   z-index: 7;
+   height: 100%;
+}
+div.Status div div.Pct {
+   z-index: 8;
+}
+div.Status div.SystemName {
+   font-weight: bold;
+   text-align: center;
+}
+div.Status div.MiniMap {
+   height: 200px;
+}
+div.Status div.Armor div.Bar{
+   background-color: DarkRed;
+   width: 100%;
+}
+div.Status div.Armor div.Pct {
+   color: Pink;
+}
+div.Status div.Shields div.Bar {
+   background-color: DarkGreen;
+   width: 100%;
+}
+div.Status div.Shields div.Pct {
+   color: GreenYellow;
+}
+div.Status div.Cargo {
+   height: 100px;
+}
+div.Status div.Selected {
+}
+div.Status div.Fuel div.Bar {
+   background-color: DarkBlue;
+   width: 100%;
+}
+div.Status div.Fuel div.Pct {
+   color: SkyBlue;
+}
+div.Status div.Credits {
+   text-align: right;
+}
+div.Status div.Cargo {
+   overflow-y: auto;
+}
