@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" manifest="cache-manifest.manifest">
+<head>
+	<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>	
+	<title>EV Web Demo</title>
+	<script type="text/javascript" src="scripts/data.js"></script>
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/input.js"></script>
+	<script type="text/javascript" src="scripts/ev.js"></script>
+	<script type="text/javascript" src="scripts/starfield.js"></script>
+ 	
+	<style>
+		body {
+			background: black;
+			overflow: hidden;
+			margin: 0;
+		}
+		
+		#starbridge {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 72px;
+			height: 72px;
+			margin-left: -36px; /* half of width */
+			margin-top: -36px;  /* half of height */
+			background: url('images/loader.gif') center center no-repeat;
+		}
+	</style>
+</head>
+
+<body>
+
+<canvas id="starbridge" width="72" height="72"></canvas>
+
+</body>
+</html>

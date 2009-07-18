@@ -1,0 +1,114 @@
+   body {
+      background: black;
+      overflow: hidden;
+      margin-bottom:0;
+   }
+
+   div.Backdrop{
+      position: absolute;
+      background: black;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin-bottom: 0;
+      top: 0;
+      left: 0;
+   }
+   
+   div.Info{
+      position: absolute;
+      background: transparent;
+      width: 50%;
+      height: 3%;
+      overflow: hidden;
+      margin-bottom: 0;
+      top: 95%;
+      left: 5%;
+      z-index: 100;
+      color: white;
+      font-weight: bold;
+      text-align: left;
+      font-size: 80%;
+   }
+   
+   div.PlanetLayer{
+      position: absolute;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      margin: 0;
+      z-index: 3;
+   }
+
+   div.ShipLayer{
+      position: absolute;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      margin: 0;
+      z-index: 2;
+   }
+   
+   
+
+   div.Planet {
+      position: absolute;
+      top: 500px;
+      left: 500px;
+      width: 350px;
+      height: 350px;
+      background: url('earth.gif');
+      background-repeat: no-repeat;
+      z-index: 3;
+   }
+
+   input.TextBox{
+     width: 80%;
+     height: 100%;
+     background: black;
+     color: white;
+     border: 1px solid white;
+   }
+   
+   div.Star {
+      position: absolute;
+      z-index: 1;
+   }
+   
+   div.StarB {
+      position: absolute;
+      z-index: 1;;
+      
+   }
+   
+   div.StarC {
+      position: absolute;
+      z-index: 1;
+   }
+
+   div.Star2B {
+      position: absolute;
+      z-index: 1;;
+      
+   }
+   
+   div.Star2C {
+      position: absolute;
+      z-index: 1;
+   }
+
+   div.Star2 {
+      position: absolute;
+      z-index: 1;
+   }
+   
+   div.Star3 {
+      position: absolute;
+      z-index: 1;
+   }
+   
+   span.Ship {
+      position: absolute;
+   }
