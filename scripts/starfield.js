@@ -14,8 +14,8 @@ function starfield() {
 		['lightcyan', 1, 2, .50, 'Star3']
 	];
 	
-	var screenWidth = $('body').innerWidth()
-	var screenHeight = $('body').innerHeight();
+	var screenWidth = window.innerWidth;
+	var screenHeight = window.innerHeight;
 	
 	// Attach new canvas
 	$('body').append(
