@@ -1,4 +1,10 @@
-
+/*
+ * EV Web (Experimental) - Web-based implementation of an Escape Velocity-like client engine.
+ * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+ * Copyright (c) 2009 Alex Trujillo
+ * ev.js
+ * Main function, as well as other functions that are still being developed before being split off to other files.
+ */
 
 /* Parallel Loader */
 
@@ -9,6 +15,7 @@ var numGraphicsLoaded = 0;
 function graphicsLoaded () {
 	numGraphicsLoaded++;
 	if (numGraphicsLoaded == shipGraphics.length) {
+		// Kludgy also
 		shipSheet = shipGraphics[0][0];
 		glowSheet = shipGraphics[1][0];
 		// Kludgy, but doesn't confuse users by loading a blank image

@@ -1,3 +1,11 @@
+/*
+ * EV Web (Experimental) - Web-based implementation of an Escape Velocity-like client engine.
+ * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+ * Copyright (c) 2009 Alex Trujillo
+ * input.js
+ * Self-descriptive, input handling.
+ */
+
 /* Player Input */
 
 var smoothturn;

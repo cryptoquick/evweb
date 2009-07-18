@@ -1,11 +1,17 @@
+/*
+ * EV Web (Experimental) - Web-based implementation of an Escape Velocity-like client engine.
+ * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+ * Copyright (c) 2009 Alex Trujillo
+ * data.js
+ * Holds game and graphics data. Will get larger as more content is added.
+ */
+
 /* Graphics */
+
 var ship_size = 48;
 var glow_size = 72;
 
 /* Ship Resources */
-
-//var shipSheet = new Image();
-//var glowSheet = new Image();
 
 var shipGraphics = [
 	[null, 'images/starbridge-alpha.png', false],
