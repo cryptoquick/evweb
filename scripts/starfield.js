@@ -1,17 +1,21 @@
+var starField = new Image();
 
 // Perform these actions after the DOM is created.
-$(document).ready(function() {
-  // Create div for starfield to be placed upon loading of the script
-  objStarfield = document.createElement('div');
-  objStarfield.setAttribute('id', 'Starfield');
-  document.body.appendChild(objStarfield);
-
-  // Create 3 layers of stars. One close, one medium, one far.
-  Star1 = new createStarField('yellow', 1, 1, .75, 'Star')   	// Close
-  Star2 = new createStarField('white', 2, .5, .25, 'Star2')  	// Far
-  Star3 = new createStarField('lightcyan', 1, 2, .50, 'Star3')  // Medium
-});
-
+function starfield() {
+	// Create div for starfield to be placed upon loading of the script
+	objStarfield = document.createElement('div');
+	objStarfield.setAttribute('id', 'Starfield');
+	document.body.appendChild(objStarfield);
+	
+	// Create 3 layers of stars. One close, one medium, one far.
+	var starColors = [
+		['yellow', 1, 1, .75, 'Star'],  
+		['white', 2, .5, .25, 'Star2'],
+		['lightcyan', 1, 2, .50, 'Star3']
+	];
+	
+//	$('body').style.background = 'red';
+}
 
  function createStarField(strColor, intSize, intNumStars, lngSpeedRatio, strID){
   this.Color = strColor;
