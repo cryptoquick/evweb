@@ -1,60 +1,56 @@
-var starField = new Image();
+/*
+ * EV Web (Experimental) - Web-based implementation of an Escape Velocity-like client engine.
+ * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+ * Copyright (c) 2009 Alex Trujillo
+ * starfield.js
+ * Creates the starfield in the background.
+ */
 
-// Perform these actions after the DOM is created.
 function starfield() {
-	// Create div for starfield to be placed upon loading of the script
-	objStarfield = document.createElement('div');
-	objStarfield.setAttribute('id', 'Starfield');
-	document.body.appendChild(objStarfield);
-	
 	// Create 3 layers of stars. One close, one medium, one far.
-	var starColors = [
+	var starAttrs = [
 		['yellow', 1, 1, .75, 'Star'],  
 		['white', 2, .5, .25, 'Star2'],
 		['lightcyan', 1, 2, .50, 'Star3']
 	];
 	
-//	$('body').style.background = 'red';
+	var screenWidth = $('body').innerWidth()
+	var screenHeight = $('body').innerHeight();
+	
+	// Attach new canvas
+	$('body').append(
+		$("<canvas>").attr({
+			id: 'starfield',
+			width: screenWidth,
+			height: screenHeight
+		})
+	);
+	
+	// Ripped from the Opera examples
+	// Get the canvas element.
+	var elem = document.getElementById('starfield');
+	if (!elem || !elem.getContext) {
+		return;
+	}
+	
+	// Get the canvas 2d context.
+	var context = elem.getContext('2d');
+	if (!context) {
+		return;
+	}
+	
+	// Draw stars in each color
+	for (var i = 0; i < starAttrs.length; i++) {
+		context.fillStyle = starAttrs[i][0];
+		// Draw a certain number of stars
+		for (var j = 0; j < Math.floor(Math.random() * 100 * starAttrs[i][2]); j++) {
+			context.fillRect  (
+				// Random position in the x and y
+				Math.floor(screenWidth * Math.random()),
+				Math.floor(screenHeight * Math.random()),
+				starAttrs[i][1],
+				starAttrs[i][1]
+			);
+		}
+	}
 }
-
- function createStarField(strColor, intSize, intNumStars, lngSpeedRatio, strID){
-  this.Color = strColor;
-  this.SpeedRatio = lngSpeedRatio;
-  this.ID = strID;
-  this.Size = intSize
-  this.NumStars = intNumStars
-  ScreenHeight = objStarfield.offsetHeight;
-  ScreenWidth = objStarfield.offsetWidth;
-  var StarNum = Math.random() * 100;
-
-  if (objStarfield) {
-
-   var divBase = document.createElement('div');
-   divBase.setAttribute("id", this.ID);
-   divBase.style.position = 'absolute';
-   divBase.style.zIndex = 1;
-   divBase.style.background = 'transparent';
-   divBase.style.height = '100%';
-   divBase.style.width = '100%';
-   divBase.style.className = this.ID;
-   //Span for stars
-   for ( i = 0; i <= StarNum * this.NumStars; i++ )
-   {
-    var objStar = document.createElement("div");
-    var top = Math.random() * ScreenHeight; 
-    var left = Math.random() * ScreenWidth;
-    objStar.style.top = top;
-    objStar.style.left = left;
-    objStar.style.position = "absolute";
-    objStar.style.width = this.Size;
-    objStar.style.height = this.Size;
-    objStar.style.background = this.Color;
-    objStar.style.zIndex = 1; 
-    objStar.style.overflow = "hidden";
-    objStar.style.className = "Star";
-    divBase.appendChild(objStar);
-   }
-   objStarfield.appendChild(divBase)
-  }
-
- }
