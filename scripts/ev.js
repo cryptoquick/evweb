@@ -19,7 +19,8 @@ function graphicsLoaded () {
 		shipSheet = shipGraphics[0][0];
 		glowSheet = shipGraphics[1][0];
 		// Kludgy, but doesn't confuse users by loading a blank image
-		setTimeout("Init()", 750);
+	//	setTimeout("Init()", 750);
+		Init();
 	}
 }
 
@@ -50,6 +51,23 @@ function Init () {
 	
 	// Draw first frame.
 	DrawSprite(shipSheet, 0, 0, 48, 12, 10, false);
+	
+	// Set timer
+	gameTimer(false);
+}
+
+/* Game Timer */
+
+function gameTimer(pause) {	
+	if (pause) {
+		window.clearInterval(gamePulse);
+	} else {
+		var gamePulse = window.setInterval("evalState()", 25);
+	}
+}
+
+function evalState() {
+	
 }
 
 /* Ship Navigation */
