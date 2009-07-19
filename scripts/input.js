@@ -25,8 +25,8 @@ function Key (evt) {
 			charCode = evt.keyCode;
 		}
 		
-		// Left arrow key
-		if (charCode == 39) {
+		// Right arrow key
+		if (charCode == 39 || charCode == 68) {
 			// setInterval animates (read, repeats) the function at a certain speed.
 			// Current speed is set to 0.03 seconds, or 33FPS.
 			if (keyPressed == 0) {
@@ -41,8 +41,8 @@ function Key (evt) {
 			// to repeat, the program won't set an interval again until it is released.
 			keyPressed = 39;
 		}
-		// Right arrow key
-		if (charCode == 37) {
+		// Left arrow key
+		if (charCode == 37 || charCode == 65) {
 			if (keyPressed === 0) {
 				smoothturn = window.setInterval("updateShip('turnLeft')", 30);
 			}
@@ -54,7 +54,7 @@ function Key (evt) {
 		}
 		
 		// Up arrow key
-		if (charCode == 38) {
+		if (charCode == 38 || charCode == 87) {
 			smoothGo = window.setInterval("updateShip('speedUp')", 100);
 			shipMoving = true;
 		}
