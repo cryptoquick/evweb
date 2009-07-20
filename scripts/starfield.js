@@ -17,30 +17,32 @@ function starfield() {
 	var screenWidth = window.innerWidth;
 	var screenHeight = window.innerHeight;
 	
-	// Attach new canvas
-	$('body').append(
-		$("<canvas>").attr({
-			id: 'starfield',
-			width: screenWidth,
-			height: screenHeight
-		})
-	);
+
+	for (var i=0, o; o=starAttrs[i]; i++) {
+ 
+		// Attach new canvas
+		$('body').append(
+			$("<canvas>").attr({
+				id: starAttrs[i][4],
+				width: screenWidth,
+				height: screenHeight
+			})
+		);
+		
+		// Ripped from the Opera examples
+		// Get the canvas element.
+		var elem = document.getElementById(starAttrs[i][4]);
+		if (!elem || !elem.getContext) {
+			return;
+		}
 	
-	// Ripped from the Opera examples
-	// Get the canvas element.
-	var elem = document.getElementById('starfield');
-	if (!elem || !elem.getContext) {
-		return;
-	}
+		// Get the canvas 2d context.
+		var context = elem.getContext('2d');
+		if (!context) {
+			return;
+		}
 	
-	// Get the canvas 2d context.
-	var context = elem.getContext('2d');
-	if (!context) {
-		return;
-	}
-	
-	// Draw stars in each color
-	for (var i = 0; i < starAttrs.length; i++) {
+		
 		context.fillStyle = starAttrs[i][0];
 		// Draw a certain number of stars
 		for (var j = 0; j < Math.floor(Math.random() * 100 * starAttrs[i][2]); j++) {
@@ -52,5 +54,6 @@ function starfield() {
 				starAttrs[i][1]
 			);
 		}
+		
 	}
 }
