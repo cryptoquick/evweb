@@ -16,16 +16,17 @@ function starfield() {
 	
 	var screenWidth = window.innerWidth;
 	var screenHeight = window.innerHeight;
-	
+	var starNum = Math.random() * 100
 
-	for (var i=0, o; o=starAttrs[i]; i++) {
- 
+	for (var i=0; i < starAttrs.length; i++) {
+
 		// Attach new canvas
 		$('body').append(
 			$("<canvas>").attr({
 				id: starAttrs[i][4],
 				width: screenWidth,
-				height: screenHeight
+				height: screenHeight,
+				class: 'Starfields'
 			})
 		);
 		
@@ -44,8 +45,10 @@ function starfield() {
 	
 		
 		context.fillStyle = starAttrs[i][0];
+		
+		
 		// Draw a certain number of stars
-		for (var j = 0; j < Math.floor(Math.random() * 100 * starAttrs[i][2]); j++) {
+		for (var j = 0; j < Math.floor(starNum * starAttrs[i][2]); j++) {
 			context.fillRect  (
 				// Random position in the x and y
 				Math.floor(screenWidth * Math.random()),
@@ -57,3 +60,4 @@ function starfield() {
 		
 	}
 }
+
